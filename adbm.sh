@@ -22,7 +22,7 @@ prefixo=$(hostname -I 2>/dev/null | tr ' ' '\n' | grep -v '127\.' | grep -v ':' 
 }
 
 # Escaneia
-printf '%sEscaneando %s.1..254:5555...%s' "$amarelo" "$prefixo" "$fecha"
+printf '%sProcurando devices%s' "$amarelo" "$fecha"
 
 resultados=$(seq 1 254 | xargs -P 50 -I{} bash -c "
     timeout 0.3 nc -z -w1 $prefixo.{} 5555 2>/dev/null && echo $prefixo.{}
